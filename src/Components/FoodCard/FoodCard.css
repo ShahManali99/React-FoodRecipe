@@ -1,0 +1,10 @@
+.card {
+    margin: 20px;
+    box-shadow: 0 4px 6px rgb(0,0,0,0.1);
+}
+.card-body .btn {
+    margin-top: 5px;
+}
+.card-body .card-title {
+    text-align: center;
+}
