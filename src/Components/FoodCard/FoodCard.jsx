@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './FoodCard.css';
 
-const FoodCard = ({foodItem}) => {
+const FoodCard = ({foodItem, setFoodId}) => {
   return (
     <>
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={foodItem.image} />
         <Card.Body className="d-flex flex-column align-items-center">
           <Card.Title>{foodItem.title}</Card.Title>
-          <Button variant="primary">View Recipe</Button>
+          <Button variant="primary" onClick={()=>{setFoodId(foodItem.id)}}>View Recipe</Button>
         </Card.Body>
       </Card>
     </>
