@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getRecipeInfo } from '../../Services/Api';
 import Spinner from 'react-bootstrap/Spinner';
 import './RecipeDetail.css';
+import IngredientList from '../IngredientList/IngredientList';
 
 const RecipeDetail = ({foodId}) => {
   const [loading, setLoading] = useState(true)
@@ -23,7 +24,8 @@ const RecipeDetail = ({foodId}) => {
     <>
     <div>
       <div className='recipeCard'>
-        <h1 className='recipeName'>{recipe.title} {recipe.vegetarian ? '🟢 Vegetarian' : '🔴 Non-vegetarian'} {recipe.vegan && '🌱 Vegan'}</h1>
+        <h1 className='recipeName'>{recipe.title}</h1>
+        <span className='recipeType'>{recipe.vegetarian ? '🟢 Vegetarian' : '🔴 Non-vegetarian'} {recipe.vegan && '🌱 Vegan'}</span>
         <img className='recipeImage' src={recipe.image}/>
         <div className='recipeDetails'>
           <span>
@@ -32,12 +34,21 @@ const RecipeDetail = ({foodId}) => {
           <span>
             <strong>👪 Serves: {recipe.servings}</strong>
           </span>
-        </div>
-        <div>
           <span>
-            <strong>＄{recipe.pricePerServing/100} Per Serving</strong>
+            <strong>＄{(recipe.pricePerServing/100).toFixed(2)} Per Serving</strong>
           </span>
         </div>
+        <h2>Ingredients</h2>
+        {loading ? 
+            (<Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+            </Spinner>) : 
+          <div className="ingredientList">
+          {recipe.extendedIngredients.map((ingredient)=>{
+          return <IngredientList ingredient={ingredient} key={ingredient.id}/>
+          })}
+          </div>
+        }
         <h2>Instructions</h2>
         <div className='recipeInstructions'>
           <ol>

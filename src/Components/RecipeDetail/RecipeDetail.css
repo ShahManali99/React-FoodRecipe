@@ -4,11 +4,15 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgb(0,0,0,0.2);
     border-radius: 10px;
-    color: #393e46;
 }
 
 .recipeName {
     font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.recipeType{
+    display: block;
     margin-bottom: 10px;
 }
 
@@ -38,4 +42,10 @@
 
 .recipeInstructions li {
     margin: 10px 0px;
+}
+
+.ingredientList {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
 }
